@@ -13,5 +13,5 @@ Blockchain Tutorial
 
 ## TODO
 
-- [] 结合 <<Mastering Bitcoin>> 丰富优化
+- [] 结合 << Mastering Bitcoin >> 丰富优化
 - [] 结合真实项目，比如 btc, btcd 等, 进行代码分析
