@@ -8,4 +8,6 @@
 !*/
 !Makefile
 
+blockchain.db
+
 ### Above combination will ignore all files without extension ###
