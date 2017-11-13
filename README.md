@@ -8,7 +8,7 @@ Blockchain Tutorial
 - [x] [持久化和命令行接口](part-3/part-3-persistence-and-cli.md)
 - [x] [交易（1）](part-4/part-4-transactions-1.md)
 - [x] [地址](part-5/part-5-address.md)
-- [x] 交易（2）(part-6/part-6-transactions-2.md)
+- [x] [交易（2）](part-6/part-6-transactions-2.md)
 - [] 网络
 
 ## TODO
