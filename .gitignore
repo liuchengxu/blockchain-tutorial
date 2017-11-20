@@ -10,4 +10,6 @@
 
 blockchain.db
 
+_book/
+
 ### Above combination will ignore all files without extension ###
