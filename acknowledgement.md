@@ -1,1 +1,2 @@
-本教程演绎自 [blockchain_go](https://github.com/Jeiwan/blockchain_go) 的系列文章。
+- 本教程演绎自 [blockchain_go](https://github.com/Jeiwan/blockchain_go) 的系列文章
+- gitbook 配置参考了 [gitbook-use](https://github.com/zhangjikai/gitbook-use)

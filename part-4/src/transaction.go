@@ -11,16 +11,16 @@ import (
 
 const subsidy = 10
 
-// 交易由交易 ID，输入和输出构成
+// Transaction 由交易 ID，输入和输出构成
 type Transaction struct {
 	ID   []byte
 	Vin  []TXInput
 	Vout []TXOutput
 }
 
-// 一个交易输入引用了之前一笔交易的一个输出
-// Txid: 之前那笔交易的 ID
-// Vout: 该输出在那笔交易所有输出中的索引，因为一笔交易可能有多个输出
+// TXInput 包含 3 部分
+// Txid: 一个交易输入引用了之前一笔交易的一个输出, ID 表明是之前哪笔交易
+// Vout: 一笔交易可能有多个输出，Vout 为输出的索引
 // ScriptSig: 提供解锁输出 Txid:Vout 的数据
 type TXInput struct {
 	Txid      []byte

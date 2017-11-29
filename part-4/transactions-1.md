@@ -45,3 +45,7 @@ type Transaction struct {
 3. 一个输入必须引用一个输出
 
 贯穿本文，我们将会使用像“钱（money）”，“币（coin）”，“花费（spend）”，“发送（send）”，“账户（account）” 等等这样的词。但是在比特币中，其实并不存在这样的概念。交易仅仅是通过一个脚本（script）来锁定（lock）一些价值（value），而这些价值只可以被锁定它们的人解锁（unlock）。
+
+----
+
+- 下一节: [交易输入](txin.md)

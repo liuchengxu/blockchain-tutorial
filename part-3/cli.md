@@ -179,22 +179,23 @@ PoW: true
 
 ![test](http://upload-images.jianshu.io/upload_images/127313-996c857601ed80a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-## 总结
 
-在下篇文章中，我们将会实现地址，钱包，（可能实现）交易。尽请收听！
+参考：
 
-链接
 - [Full source codes](https://github.com/Jeiwan/blockchain_go/tree/part_3)
+
 - [Bitcoin Core Data Storage](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_2):_Data_Storage)
+
 - [boltdb](https://github.com/boltdb/bolt)
+
 - [encoding/gob](https://golang.org/pkg/encoding/gob/)
+
 - [flag](https://golang.org/pkg/flag/)
 
-本文源码：[part_3](https://github.com/Jeiwan/blockchain_go/tree/part_3)
+- [part_3](https://github.com/Jeiwan/blockchain_go/tree/part_3)
 
-原文：[Building Blockchain in Go. Part 3: Persistence and CLI](https://jeiwan.cc/posts/building-blockchain-in-go-part-3/)
+- [Building Blockchain in Go. Part 3: Persistence and CLI](https://jeiwan.cc/posts/building-blockchain-in-go-part-3/)
 
 ----
 
-
-进入 src 目录查看代码，执行 `make` 即可运行。
+- 上一节: [持久化](persistence.md)
