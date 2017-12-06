@@ -26,6 +26,10 @@ account（账户）会存储用户信息，里面包括了个人信息和余额�
 
 一笔交易由一些输入（input）和输出（output）组合而来：
 
+![tx](./img/blockchain-info-tx.png)
+
+点击 [这里](https://blockchain.info/zh-cn/tx/b6f6b339b546a13822192b06ccbdd817afea5311845f769702ae2912f7d94ab5) 在 blockchain.info 查看上图中的交易信息。
+
 ```go
 type Transaction struct {
 	ID   []byte

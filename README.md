@@ -3,7 +3,7 @@ Blockchain Tutorial
 
 :point_right: [目录](SUMMARY.md)
 
-:point_right: 使用 [gitbook](https://liuchengxu.gitbooks.io/blockchain-tutorial/content/) 阅读
+:point_right: 使用 [gitbook](https://liuchengxu.gitbooks.io/blockchain-tutorial/content/) 阅读（可能需要翻墙）
 
 ## TODO
 
