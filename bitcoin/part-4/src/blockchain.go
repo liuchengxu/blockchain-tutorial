@@ -165,6 +165,7 @@ func CreateBlockchain(address string) *Blockchain {
 	return &bc
 }
 
+// FindUnspentTransactions 找到未花费输出的交易
 func (bc *Blockchain) FindUnspentTransactions(address string) []Transaction {
 	var unspentTXs []Transaction
 	spentTXOs := make(map[string][]int)
@@ -178,6 +179,7 @@ func (bc *Blockchain) FindUnspentTransactions(address string) []Transaction {
 
 		Outputs:
 			for outIdx, out := range tx.Vout {
+				// 如果交易输出被花费了
 				if spentTXOs[txID] != nil {
 					for _, spentOut := range spentTXOs[txID] {
 						if spentOut == outIdx {
@@ -186,6 +188,7 @@ func (bc *Blockchain) FindUnspentTransactions(address string) []Transaction {
 					}
 				}
 
+				// 如果该交易输出可以被解锁，即可被花费
 				if out.CanBeUnlockedWith(address) {
 					unspentTXs = append(unspentTXs, *tx)
 				}
@@ -224,6 +227,7 @@ func (bc *Blockchain) FindUTXO(address string) []TXOutput {
 	return UTXOs
 }
 
+// FindSpendableOutputs 从 address 中找到至少 amount 的 UTXO
 func (bc *Blockchain) FindSpendableOutputs(address string, amount int) (int, map[string][]int) {
 	unspentOutputs := make(map[string][]int)
 	unspentTXs := bc.FindUnspentTransactions(address)

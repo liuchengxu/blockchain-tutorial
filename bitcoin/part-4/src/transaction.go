@@ -28,6 +28,7 @@ type TXInput struct {
 	ScriptSig string
 }
 
+// TXOutput 包含两部分
 // Value: 有多少币，就是存储在 Value 里面
 // ScriptPubKey: 对输出进行锁定
 // 在当前实现中，ScriptPubKey 将仅用一个字符串来代替
@@ -36,6 +37,7 @@ type TXOutput struct {
 	ScriptPubKey string
 }
 
+// IsCoinbase 判断是否是 coinbase 交易
 func (tx Transaction) IsCoinbase() bool {
 	return len(tx.Vin) == 1 && len(tx.Vin[0].Txid) == 0 && tx.Vin[0].Vout == -1
 }
@@ -76,10 +78,12 @@ func NewCoinbaseTX(to, data string) *Transaction {
 	return &tx
 }
 
+// NewUTXOTransaction 创建一笔新的交易
 func NewUTXOTransaction(from, to string, amount int, bc *Blockchain) *Transaction {
 	var inputs []TXInput
 	var outputs []TXOutput
 
+	// 找到足够的未花费输出
 	acc, validOutputs := bc.FindSpendableOutputs(from, amount)
 
 	if acc < amount {
@@ -99,6 +103,8 @@ func NewUTXOTransaction(from, to string, amount int, bc *Blockchain) *Transactio
 	}
 
 	outputs = append(outputs, TXOutput{amount, to})
+
+	// 如果 UTXO 总数超过所需，则产生找零
 	if acc > amount {
 		outputs = append(outputs, TXOutput{acc - amount, from})
 	}
