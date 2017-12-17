@@ -53,6 +53,8 @@
 
 ## Others
 
+* [卡尔达诺入门必备](others/cardano-introduction.md)
+
 ----
 
 * [致谢](acknowledgement.md)
