@@ -11,7 +11,15 @@ Blockchain Tutorial
 
 ## Resources
 
-- [[python] write-your-own-blockchain](https://bigishdata.com/2017/10/17/write-your-own-blockchain-part-1-creating-storing-syncing-displaying-mining-and-proving-work/)
+### Python
+
+- [write-your-own-blockchain](https://bigishdata.com/2017/10/17/write-your-own-blockchain-part-1-creating-storing-syncing-displaying-mining-and-proving-work/)
+
+### Golang
+
+- [gochain](https://github.com/crisadamo/gochain)
+- [blockchain](https://github.com/izqui/blockchain)
+- [naivechain](https://github.com/kofj/naivechain)
 
 ## Credits
 

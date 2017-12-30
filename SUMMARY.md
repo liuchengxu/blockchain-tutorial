@@ -50,10 +50,13 @@
 ## Ethereum
 
 * [设计原理](ethereum/design-rationale.md)
+- [以太坊分片：overview and finality](ethereum/ethereum-sharding-overview-and-finality.md)
 
-## Others
+## Cardano
 
 * [卡尔达诺入门必备](others/cardano-introduction.md)
+
+## Others
 
 ----
 
