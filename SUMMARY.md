@@ -52,14 +52,16 @@
 * [设计原理](ethereum/design-rationale.md)
 * [以太坊分片：overview and finality](ethereum/ethereum-sharding-overview-and-finality.md)
 * [以太坊 Casper 101](ethereum/ethereum-casper-101.md)
+* [以太坊 Casper 101 词汇表](ethereum/ethereum-casper-101-glossary.md)
 
 ## Cardano
 
 * [卡尔达诺入门必备](cardano/cardano-introduction.md)
+* [ouroboros](cardano/ouroboros.md)
 
 ## Misc
 
-- 
+- [区块链共识](misc/blockchain-consensus.md)
 
 ----
 
