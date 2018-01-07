@@ -64,7 +64,7 @@ func (out *TXOutput) CanBeUnlockedWith(unlockingData string) bool {
 	return out.ScriptPubKey == unlockingData
 }
 
-// coinbase 交易没有输入，只有一个输出
+// NewCoinbaseTX 构建 coinbase 交易，该没有输入，只有一个输出
 func NewCoinbaseTX(to, data string) *Transaction {
 	if data == "" {
 		data = fmt.Sprintf("Reward to '%s'", to)

@@ -1,6 +1,8 @@
 以太坊分片：overview and finality
 =================================
 
+> 原文：https://medium.com/@icebearhww/ethereum-sharding-and-finality-65248951f649
+
 在 [Ethereum Casper 101](https://medium.com/@jonchoi/ethereum-casper-101-7a851a4f1eb0)[1] 中，Jon Choi 对 Casper 做了一个很棒很清晰的综述，并解释了*为什么*显式最终确定性（explicit finality）对于可扩展性（scalability）大有裨益。本文旨在给出一个以太坊分片的设计概览，并阐释显式最终确定性*如何*有助于区块链分片。
 
 为了完全理解以太坊分片机制提案的技术规范，我强烈推荐深入研究 Vitalik 写的  [**sharding doc**](https://github.com/ethereum/sharding/blob/develop/docs/doc.md) [2].
@@ -63,6 +65,7 @@
 一旦验证人被采样为合格的 collator 来提案一个新的 collation，collator 必须对最近的 collation 进行验证，并发送一笔交易来调用 `addHeader` 函数。注意，如果 collator **周期 10** 被采样到提交一个新的 collation，这意味着 `addHeader` 交易 **必须被包含在周期 10 里面**，也就是说，交易必须在区块号 `10 * PERIOD_LENGTH` 到区块号 `(10 + 1) * PERIOD_LENGTH - 1` 之间.
 
 ![Figure 2 (b). For one shard, only one collation per period; one block can include multiple addHeader transactions of different shards.](http://upload-images.jianshu.io/upload_images/127313-557a7b4ee36264f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
 
 collation header hash 必须被记录在 VMC 上，以证明它的 header 全局有效。此外，分片的所有其他验证人必须时刻检测 VMC 以获得最新状态，然后验证交易是否也有效。
 
@@ -146,16 +149,18 @@ Casper FFG 将会提供显式最终确定性阈值[after about 2.5 “epoch time
 
 特别感谢 Vitalik Buterin 的杰出工作，Jon Choi 督促我写下这篇文章，Dr.Chang-Wu Chen 修缮，Brian Chen 给予反馈 以及 Vlad Zamfir 的分享。
 
-参考
+参考:
 
-1.  Jon Choi. Casper 101: [https://medium.com/@jonchoi/ethereum-casper-101-7a851a4f1eb0](https://medium.com/@jonchoi/ethereum-casper-101-7a851a4f1eb0)
-2.  Vitalik Buterin. Sharding Document：
- [https://github.com/ethereum/sharding/blob/develop/docs/doc.md](https://github.com/ethereum/sharding/blob/develop/docs/doc.md)
-3.  Vitalik Buterin and the contributors. Sharding FAQ：[https://github.com/ethereum/wiki/wiki/Sharding-FAQ](https://github.com/ethereum/wiki/wiki/Sharding-FAQ)
-4.  Vitalik Buterin. Sharding Mindmap：[https://www.mindomo.com/mindmap/sharding-d7cf8b6dee714d01a77388cb5d9d2a01](https://www.mindomo.com/mindmap/sharding-d7cf8b6dee714d01a77388cb5d9d2a01)
-5.  Vitalik Buterin. On Settlement Finality:[https://blog.ethereum.org/2016/05/09/on-settlement-finality/](https://blog.ethereum.org/2016/05/09/on-settlement-finality/)
-6.  Ethresear.ch thread — The Stateless Client Concept:[https://ethresear.ch/t/the-stateless-client-concept/172](https://ethresear.ch/t/the-stateless-client-concept/172)
-7.  Ethresear.ch thread — Casper contract and full POS:[https://ethresear.ch/t/casper-contract-and-full-pos/136/2](https://ethresear.ch/t/casper-contract-and-full-pos/136/2)
+[1] Jon Choi. Casper 101: [https://medium.com/@jonchoi/ethereum-casper-101-7a851a4f1eb0](https://medium.com/@jonchoi/ethereum-casper-101-7a851a4f1eb0)
 
+[2] Vitalik Buterin. Sharding Document：[https://github.com/ethereum/sharding/blob/develop/docs/doc.md](https://github.com/ethereum/sharding/blob/develop/docs/doc.md)
 
-原文：https://medium.com/@icebearhww/ethereum-sharding-and-finality-65248951f649
+[3] Vitalik Buterin and the contributors. Sharding FAQ：[https://github.com/ethereum/wiki/wiki/Sharding-FAQ](https://github.com/ethereum/wiki/wiki/Sharding-FAQ)
+
+[4] Vitalik Buterin. Sharding Mindmap：[https://www.mindomo.com/mindmap/sharding-d7cf8b6dee714d01a77388cb5d9d2a01](https://www.mindomo.com/mindmap/sharding-d7cf8b6dee714d01a77388cb5d9d2a01)
+
+[5] Vitalik Buterin. On Settlement Finality:[https://blog.ethereum.org/2016/05/09/on-settlement-finality/](https://blog.ethereum.org/2016/05/09/on-settlement-finality/)
+
+[6] Ethresear.ch thread — The Stateless Client Concept:[https://ethresear.ch/t/the-stateless-client-concept/172](https://ethresear.ch/t/the-stateless-client-concept/172)
+
+[7] Ethresear.ch thread — Casper contract and full POS:[https://ethresear.ch/t/casper-contract-and-full-pos/136/2](https://ethresear.ch/t/casper-contract-and-full-pos/136/2)

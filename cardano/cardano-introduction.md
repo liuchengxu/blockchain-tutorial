@@ -12,7 +12,7 @@
 
 卡尔达诺是一个去中心化的公有区块链和加密货币项目，它目前正在开发一个智能合约平台，该平台旨在提供更多超越以往任何协议的高级功能。它是第一个衍生自科学哲学的区块链平台，主要以研究驱动，开发团队网罗了全球顶尖的工程师和研究人员。
 
-通俗来讲，卡尔达诺以**可证的权益证明共识（provable PoS）**乌洛波罗斯（Ouroboros）为中心，集比特币（Bitcoin），以太坊（Ethereum，智能合约），波卡（Polkadot，跨链）之大成。卡尔达诺的智能合约将使用第三代基于 EVM 的虚拟机 [IELE](https://iohk.io/blog/iele-a-new-virtual-machine-for-the-blockchain)，通过侧链来实现跨链功能。
+通俗来讲，卡尔达诺以**可证的权益证明共识（provable PoS）**乌洛波罗斯（Ouroboros）为中心，集比特币（Bitcoin），以太坊（Ethereum，智能合约），波卡（Polkadot，跨链）之大成。卡尔达诺的智能合约将使用第三代基于 LLVM 的虚拟机 [IELE](https://iohk.io/blog/iele-a-new-virtual-machine-for-the-blockchain)，通过侧链来实现跨链功能。
 
 卡尔达诺的最初目标是希望可以改善当前加密货币的设计与开发模式，最终愿景是希望可以提供一个更加平衡，且可持续发展的生态系统，并满足用户寻求其他系统整合的需求。
 
