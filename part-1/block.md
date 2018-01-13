@@ -108,3 +108,16 @@ func NewBlock(data string, prevBlockHash []byte) *Block {
 
 - 上一节: [基本原型](basic-prototype.md)
 - 下一节: [区块链](blockchain.md)
+
+----
+
+bitcoin wiki 的[区块](https://en.bitcoin.it/wiki/Block)结构：
+
+Field        | Description                                  | Size
+:----:       | :----:                                       | :----:
+Magic no     | value always 0xD9B4BEF9                      | 4 bytes
+Blocksize    | number of bytes following up to end of block | 4 bytes
+Blockheader  | consists of 6 items                          | 80 bytes
+Transaction  | counter positive integer VI = VarInt         | 1 - 9 bytes
+transactions | the (non empty) list of transactions         | <Transaction counter>-many transactions
+
