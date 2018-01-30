@@ -37,4 +37,4 @@ type Transaction struct {
 
 ----
 
-- 下一节: [交易输出](txout.md)
+- 下一节: [交易输入](txin.md)
