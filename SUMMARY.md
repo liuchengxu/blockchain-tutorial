@@ -9,14 +9,10 @@
 #### Part 2
 
 * [基本原型](part-1/basic-prototype.md)
-* [区块](part-1/block.md)
-* [区块链](part-1/blockchain.md)
 
 #### Part 3
 
 * [工作量证明](part-2/proof-of-work.md)
-* [哈希](part-2/hashing.md)
-* [实现](part-2/implementation.md)
 
 #### Part 4
 
