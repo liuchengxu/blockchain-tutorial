@@ -35,9 +35,6 @@
 #### Part 7
 
 * [交易（2）](part-6/transactions-2.md)
-* [奖励](part-6/subsidy.md)
-* [UTXO 集](part-6/utxo-set.md)
-* [Merkle 树](part-6/merkle.md)
 
 #### Part 8
 
