@@ -23,9 +23,6 @@
 #### Part 5
 
 * [交易（1）](part-4/transactions-1.md)
-* [交易输入](part-4/txin.md)
-* [交易输出](part-4/txout.md)
-* [UTXO](part-4/utxo.md)
 
 #### Part 6
 
