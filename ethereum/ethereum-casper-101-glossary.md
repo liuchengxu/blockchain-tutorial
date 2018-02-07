@@ -1,6 +1,8 @@
 以太坊 Casper 101
 =================
 
+> 原文: [Ethereum Casper 101](https://medium.com/@jonchoi/ethereum-casper-101-7a851a4f1eb0)
+
 ## 词汇表
 
 [**Proof of Stake**](https://github.com/ethereum/wiki/wiki/Proof-of-Stake-FAQ) -- 公有链的一类共识算法，基于验证人（validator）在网络中的经济权益（economic stake）。
@@ -68,5 +70,3 @@
 [**State Transition System（状态转移系统）**](https://github.com/ethereum/wiki/wiki/White-Paper#bitcoin-as-a-state-transition-system) -- 一个维护给定状态（比如交易或账户集合）和它随着时间（也就是转移，transition）变化的系统。比特币，以太坊和其他公有链可以被认为是状态转移系统。
 
 **Protocol Utility Function（协议效用函数）** -- 一个告诉我们协议当前执行状况的公式，理想状态下应该是从区块链内部进行计算的（calculable from inside the blockchain）。在 PoW 的链中，它可以是所有生成的区块占主链的百分比。在 Casper 中，如果协议效用（protocol utility）是 0，表示执行完美，每个 epoch 都被最终确定，也没有发生安全故障。对每个没有最终确定的 epoch，会有一些惩罚，而对于每个安全故障会有一个非常严重的惩罚。如果一个协议效用函数可以被形式化，那么故障惩罚就可以尽可能与这些故障所造成的协议损失相匹配。（来自 [Triangle of Harm](http://vitalik.ca/general/2017/07/16/triangle_of_harm.html)）
-
-> 原文: [Ethereum Casper 101](https://medium.com/@jonchoi/ethereum-casper-101-7a851a4f1eb0)

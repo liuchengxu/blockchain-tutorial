@@ -43,7 +43,8 @@
         "include-csv@^0.1.0",
         "puml@^1.0.1",
         "-sharing",
-        "sharing-plus@^0.0.2"
+        "sharing-plus@^0.0.2",
+        "image-captions"
     ],
 
     "pluginsConfig": {
@@ -97,7 +98,7 @@
            ]
        },
         "tbfed-pagefooter": {
-            "copyright": "Copyright © liuchengxu 2017",
+            "copyright": "Copyright © liuchengxu 2017-2018",
             "modify_label": "该文件修订时间：",
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },
@@ -110,7 +111,7 @@
             "label": "Edit This Page"
         },
         "sitemap-general": {
-            "prefix": "http://gitbook.zhangjikai.com"
+            "prefix": "http://blockchain.liuchengxu.org"
         },
         "anchor-navigation-ex": {
             "isRewritePageTitle": false,
@@ -124,7 +125,9 @@
         "favicon": {
             "shortcut": "favicon.ico",
             "bookmark": "favicon.ico"
+        },
+        "image-captions": {
+            "caption": "_PAGE_LEVEL_._PAGE_IMAGE_NUMBER_ -- _CAPTION_"
         }
-
     }
 }
