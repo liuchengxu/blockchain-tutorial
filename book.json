@@ -1,15 +1,18 @@
 {
-    "title": "用 golang 从零开始构建区块链系列教程",
+    "title": "区块链系列教程",
     "description": "从基本原型，工作量证明，到交易，网络等各部分的区块链系列教程",
     "author": "liuchengxu",
     "output.name": "site",
     "language": "zh-hans",
     "gitbook": "3.2.3",
-    "root": ".",
+    "root": "./content",
     "links": {
         "sidebar": {
             "Home": "https://github.com/liuchengxu/blockchain-tutorial"
         }
+    },
+    "styles": {
+        "website": "styles/website.css"
     },
     "plugins": [
         "-lunr",

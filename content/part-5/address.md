@@ -104,3 +104,15 @@ Version  Public key hash                           Checksum
 由于哈希函数是单向的（也就说无法逆转回去），所以不可能从一个哈希中提取公钥。不过通过执行哈希函数并进行哈希比较，我们可以检查一个公钥是否被用于哈希的生成。
 
 好了，所有细节都已就绪，来写代码吧。很多概念只有当写代码的时候，才能理解地更透彻。
+
+## 私钥和公钥
+
+ECDSA(Elliptic Curve Digital Signature Algorithm)，椭圆曲线数字签名算法将签名与验证进行了分离。
+
+$$
+y^2 = x^3 + ax + b
+$$
+
+异点相加和同点加倍
+
+[比特币背后的数学](https://mp.weixin.qq.com/s/MigSmfzRfyw-ux1lm0iBhw)
