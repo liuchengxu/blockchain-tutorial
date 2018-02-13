@@ -1,7 +1,7 @@
 Blockchain Tutorial
 ===================
 
-[![Join the chat at https://gitter.im/blockchain-tutorial/Lobby](https://badges.gitter.im/blockchain-tutorial/Lobby.svg)](https://gitter.im/blockchain-tutorial/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/liuchengxu/blockchain-tutorial](https://badges.gitter.im/liuchengxu/blockchain-tutorial.svg)](https://gitter.im/liuchengxu/blockchain-tutorial?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 :point_right: [目录](SUMMARY.md)
 
