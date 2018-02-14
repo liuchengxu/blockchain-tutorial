@@ -106,6 +106,384 @@ func DeserializeBlock(d []byte) *Block {
 
 这就是序列化部分的内容了。
 
-----
+## 持久化
 
-- 下一节: [持久化](persistence.md)
+让我们从 `NewBlockchain` 函数开始。在之前的实现中，`NewBlockchain` 会创建一个新的 `Blockchain` 实例，并向其中加入创世块。而现在，我们希望它做的事情有：
+
+1. 打开一个数据库文件
+2. 检查文件里面是否已经存储了一个区块链
+3. 如果已经存储了一个区块链：
+    1. 创建一个新的 `Blockchain` 实例
+    2. 设置 `Blockchain` 实例的 tip 为数据库中存储的最后一个块的哈希
+4. 如果没有区块链：
+    1. 创建创世块
+    2. 存储到数据库
+    3. 将创世块哈希保存为最后一个块的哈希
+    4. 创建一个新的 `Blockchain` 实例，初始时 tip 指向创世块（tip 有尾部，尖端的意思，在这里 tip 存储的是最后一个块的哈希）
+
+代码大概是这样：
+
+```go
+func NewBlockchain() *Blockchain {
+	var tip []byte
+	db, err := bolt.Open(dbFile, 0600, nil)
+
+	err = db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte(blocksBucket))
+
+		if b == nil {
+			genesis := NewGenesisBlock()
+			b, err := tx.CreateBucket([]byte(blocksBucket))
+			err = b.Put(genesis.Hash, genesis.Serialize())
+			err = b.Put([]byte("l"), genesis.Hash)
+			tip = genesis.Hash
+		} else {
+			tip = b.Get([]byte("l"))
+		}
+
+		return nil
+	})
+
+	bc := Blockchain{tip, db}
+
+	return &bc
+}
+```
+
+来一段一段地看下代码：
+
+```go
+db, err := bolt.Open(dbFile, 0600, nil)
+```
+
+这是打开一个 BoltDB 文件的标准做法。注意，即使不存在这样的文件，它也不会返回错误。
+
+```go
+err = db.Update(func(tx *bolt.Tx) error {
+...
+})
+```
+
+在 BoltDB 中，数据库操作通过一个事务（transaction）进行操作。有两种类型的事务：只读（read-only）和读写（read-write）。这里，打开的是一个读写事务（`db.Update(...)`），因为我们可能会向数据库中添加创世块。
+
+```go
+b := tx.Bucket([]byte(blocksBucket))
+
+if b == nil {
+	genesis := NewGenesisBlock()
+	b, err := tx.CreateBucket([]byte(blocksBucket))
+	err = b.Put(genesis.Hash, genesis.Serialize())
+	err = b.Put([]byte("l"), genesis.Hash)
+	tip = genesis.Hash
+} else {
+	tip = b.Get([]byte("l"))
+}
+```
+
+这里是函数的核心。在这里，我们先获取了存储区块的 bucket：如果存在，就从中读取 `l` 键；如果不存在，就生成创世块，创建 bucket，并将区块保存到里面，然后更新 `l` 键以存储链中最后一个块的哈希。
+
+另外，注意创建 `Blockchain` 一个新的方式：
+
+```go
+bc := Blockchain{tip, db}
+```
+
+这次，我们不在里面存储所有的区块了，而是仅存储区块链的 `tip`。另外，我们存储了一个数据库连接。因为我们想要一旦打开它的话，就让它一直运行，直到程序运行结束。因此，`Blockchain` 的结构现在看起来是这样：
+
+```go
+type Blockchain struct {
+	tip []byte
+	db  *bolt.DB
+}
+```
+
+接下来我们想要更新的是 `AddBlock` 方法：现在向链中加入区块，就不是像之前向一个数组中加入一个元素那么简单了。从现在开始，我们会将区块存储在数据库里面：
+
+```go
+func (bc *Blockchain) AddBlock(data string) {
+	var lastHash []byte
+
+	err := bc.db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte(blocksBucket))
+		lastHash = b.Get([]byte("l"))
+
+		return nil
+	})
+
+	newBlock := NewBlock(data, lastHash)
+
+	err = bc.db.Update(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte(blocksBucket))
+		err := b.Put(newBlock.Hash, newBlock.Serialize())
+		err = b.Put([]byte("l"), newBlock.Hash)
+		bc.tip = newBlock.Hash
+
+		return nil
+	})
+}
+```
+
+继续来一段一段分解开来：
+
+```go
+err := bc.db.View(func(tx *bolt.Tx) error {
+	b := tx.Bucket([]byte(blocksBucket))
+	lastHash = b.Get([]byte("l"))
+
+	return nil
+})
+```
+
+这是 BoltDB 事务的另一个类型（只读）。在这里，我们会从数据库中获取最后一个块的哈希，然后用它来挖出一个新的块的哈希：
+
+```go
+newBlock := NewBlock(data, lastHash)
+b := tx.Bucket([]byte(blocksBucket))
+err := b.Put(newBlock.Hash, newBlock.Serialize())
+err = b.Put([]byte("l"), newBlock.Hash)
+bc.tip = newBlock.Hash
+```
+
+## 检查区块链
+
+现在，产生的所有块都会被保存到一个数据库里面，所以我们可以重新打开一个链，然后向里面加入新块。但是在实现这一点后，我们失去了之前一个非常好的特性：再也无法打印区块链的区块了，因为现在不是将区块存储在一个数组，而是放到了数据库里面。让我们来解决这个问题！
+
+BoltDB 允许对一个 bucket 里面的所有 key 进行迭代，但是所有的 key 都以字节序进行存储，而且我们想要以区块能够进入区块链中的顺序进行打印。此外，因为我们不想将所有的块都加载到内存中（因为我们的区块链数据库可能很大！或者现在可以假装它可能很大），我们将会一个一个地读取它们。故而，我们需要一个区块链迭代器（`BlockchainIterator`）：
+
+```go
+type BlockchainIterator struct {
+	currentHash []byte
+	db          *bolt.DB
+}
+```
+
+每当要对链中的块进行迭代时，我们就会创建一个迭代器，里面存储了当前迭代的块哈希（`currentHash`）和数据库的连接（`db`）。通过 `db`，迭代器逻辑上被附属到一个区块链上（这里的区块链指的是存储了一个数据库连接的 `Blockchain` 实例），并且通过 `Blockchain` 方法进行创建：
+
+```go
+func (bc *Blockchain) Iterator() *BlockchainIterator {
+	bci := &BlockchainIterator{bc.tip, bc.db}
+
+	return bci
+}
+```
+
+注意，迭代器的初始状态为链中的 tip，因此区块将从尾到头（创世块为头），也就是从最新的到最旧的进行获取。实际上，**选择一个 tip 就是意味着给一条链“投票”**。一条链可能有多个分支，最长的那条链会被认为是主分支。在获得一个 tip （可以是链中的任意一个块）之后，我们就可以重新构造整条链，找到它的长度和需要构建它的工作。这同样也意味着，一个 tip 也就是区块链的一种标识符。
+
+`BlockchainIterator` 只会做一件事情：返回链中的下一个块。
+
+```go
+func (i *BlockchainIterator) Next() *Block {
+	var block *Block
+
+	err := i.db.View(func(tx *bolt.Tx) error {
+		b := tx.Bucket([]byte(blocksBucket))
+		encodedBlock := b.Get(i.currentHash)
+		block = DeserializeBlock(encodedBlock)
+
+		return nil
+	})
+
+	i.currentHash = block.PrevBlockHash
+
+	return block
+}
+```
+
+这就是数据库部分的内容了！
+
+## CLI
+
+到目前为止，我们的实现还没有提供一个与程序交互的接口：目前只是在 `main` 函数中简单执行了 `NewBlockchain` 和 `bc.AddBlock` 。是时候改变了！现在我们想要拥有这些命令：
+
+```go
+blockchain_go addblock "Pay 0.031337 for a coffee"
+blockchain_go printchain
+```
+
+所有命令行相关的操作都会通过 `CLI` 结构进行处理：
+
+```go
+type CLI struct {
+	bc *Blockchain
+}
+```
+
+它的 “入口” 是 `Run` 函数：
+
+```go
+func (cli *CLI) Run() {
+	cli.validateArgs()
+
+	addBlockCmd := flag.NewFlagSet("addblock", flag.ExitOnError)
+	printChainCmd := flag.NewFlagSet("printchain", flag.ExitOnError)
+
+	addBlockData := addBlockCmd.String("data", "", "Block data")
+
+	switch os.Args[1] {
+	case "addblock":
+		err := addBlockCmd.Parse(os.Args[2:])
+	case "printchain":
+		err := printChainCmd.Parse(os.Args[2:])
+	default:
+		cli.printUsage()
+		os.Exit(1)
+	}
+
+	if addBlockCmd.Parsed() {
+		if *addBlockData == "" {
+			addBlockCmd.Usage()
+			os.Exit(1)
+		}
+		cli.addBlock(*addBlockData)
+	}
+
+	if printChainCmd.Parsed() {
+		cli.printChain()
+	}
+}
+```
+
+我们会使用标准库里面的 [flag](https://golang.org/pkg/flag/) 包来解析命令行参数：
+
+```go
+addBlockCmd := flag.NewFlagSet("addblock", flag.ExitOnError)
+printChainCmd := flag.NewFlagSet("printchain", flag.ExitOnError)
+addBlockData := addBlockCmd.String("data", "", "Block data")
+```
+
+首先，我们创建两个子命令: `addblock` 和 `printchain`, 然后给 `addblock` 添加 `-data` 标志。`printchain` 没有任何标志。
+
+```go
+switch os.Args[1] {
+case "addblock":
+	err := addBlockCmd.Parse(os.Args[2:])
+case "printchain":
+	err := printChainCmd.Parse(os.Args[2:])
+default:
+	cli.printUsage()
+	os.Exit(1)
+}
+```
+
+然后，我们检查用户提供的命令，解析相关的 `flag` 子命令：
+
+```go
+if addBlockCmd.Parsed() {
+	if *addBlockData == "" {
+		addBlockCmd.Usage()
+		os.Exit(1)
+	}
+	cli.addBlock(*addBlockData)
+}
+
+if printChainCmd.Parsed() {
+	cli.printChain()
+}
+```
+
+接着检查解析是哪一个子命令，并调用相关函数：
+
+```go
+func (cli *CLI) addBlock(data string) {
+	cli.bc.AddBlock(data)
+	fmt.Println("Success!")
+}
+
+func (cli *CLI) printChain() {
+	bci := cli.bc.Iterator()
+
+	for {
+		block := bci.Next()
+
+		fmt.Printf("Prev. hash: %x\n", block.PrevBlockHash)
+		fmt.Printf("Data: %s\n", block.Data)
+		fmt.Printf("Hash: %x\n", block.Hash)
+		pow := NewProofOfWork(block)
+		fmt.Printf("PoW: %s\n", strconv.FormatBool(pow.Validate()))
+		fmt.Println()
+
+		if len(block.PrevBlockHash) == 0 {
+			break
+		}
+	}
+}
+```
+
+这部分内容跟之前的很像，唯一的区别是我们现在使用的是 `BlockchainIterator` 对区块链中的区块进行迭代：
+
+记得不要忘了对 `main` 函数作出相应的修改：
+
+```go
+func main() {
+	bc := NewBlockchain()
+	defer bc.db.Close()
+
+	cli := CLI{bc}
+	cli.Run()
+}
+```
+
+注意，无论提供什么命令行参数，都会创建一个新的链。
+
+这就是今天的所有内容了! 来看一下是不是如期工作：
+
+```go
+$ blockchain_go printchain
+No existing blockchain found. Creating a new one...
+Mining the block containing "Genesis Block"
+000000edc4a82659cebf087adee1ea353bd57fcd59927662cd5ff1c4f618109b
+
+Prev. hash:
+Data: Genesis Block
+Hash: 000000edc4a82659cebf087adee1ea353bd57fcd59927662cd5ff1c4f618109b
+PoW: true
+
+$ blockchain_go addblock -data "Send 1 BTC to Ivan"
+Mining the block containing "Send 1 BTC to Ivan"
+000000d7b0c76e1001cdc1fc866b95a481d23f3027d86901eaeb77ae6d002b13
+
+Success!
+
+$ blockchain_go addblock -data "Pay 0.31337 BTC for a coffee"
+Mining the block containing "Pay 0.31337 BTC for a coffee"
+000000aa0748da7367dec6b9de5027f4fae0963df89ff39d8f20fd7299307148
+
+Success!
+
+$ blockchain_go printchain
+Prev. hash: 000000d7b0c76e1001cdc1fc866b95a481d23f3027d86901eaeb77ae6d002b13
+Data: Pay 0.31337 BTC for a coffee
+Hash: 000000aa0748da7367dec6b9de5027f4fae0963df89ff39d8f20fd7299307148
+PoW: true
+
+Prev. hash: 000000edc4a82659cebf087adee1ea353bd57fcd59927662cd5ff1c4f618109b
+Data: Send 1 BTC to Ivan
+Hash: 000000d7b0c76e1001cdc1fc866b95a481d23f3027d86901eaeb77ae6d002b13
+PoW: true
+
+Prev. hash:
+Data: Genesis Block
+Hash: 000000edc4a82659cebf087adee1ea353bd57fcd59927662cd5ff1c4f618109b
+PoW: true
+```
+
+![test](http://upload-images.jianshu.io/upload_images/127313-996c857601ed80a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+参考：
+
+- [Full source codes](https://github.com/Jeiwan/blockchain_go/tree/part_3)
+
+- [Bitcoin Core Data Storage](https://en.bitcoin.it/wiki/Bitcoin_Core_0.11_(ch_2):_Data_Storage)
+
+- [boltdb](https://github.com/boltdb/bolt)
+
+- [encoding/gob](https://golang.org/pkg/encoding/gob/)
+
+- [flag](https://golang.org/pkg/flag/)
+
+- [part_3](https://github.com/Jeiwan/blockchain_go/tree/part_3)
+
+- [Building Blockchain in Go. Part 3: Persistence and CLI](https://jeiwan.cc/posts/building-blockchain-in-go-part-3/)
+
+

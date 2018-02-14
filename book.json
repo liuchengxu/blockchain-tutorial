@@ -47,7 +47,8 @@
         "puml@^1.0.1",
         "-sharing",
         "sharing-plus@^0.0.2",
-        "image-captions"
+        "image-captions",
+        "donate"
     ],
 
     "pluginsConfig": {
@@ -131,6 +132,14 @@
         },
         "image-captions": {
             "caption": "_PAGE_LEVEL_._PAGE_IMAGE_NUMBER_ -- _CAPTION_"
+        },
+        "donate": {
+            "wechat": "https://raw.githubusercontent.com/liuchengxu/img/master/gitbook/wechat.jpeg",
+            "alipay": "https://raw.githubusercontent.com/liuchengxu/img/master/gitbook/alipay.jpeg",
+            "title": "",
+            "button": "赞赏 👍  ",
+            "alipayText": "支付宝打赏",
+            "wechatText": "微信打赏"
         }
     }
 }

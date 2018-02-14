@@ -3,7 +3,7 @@
 
 本教程内容涉及：
 
-- 用 golang 从零开始构建区块链系列
+- 用 golang 从零开始构建区块链(Bitcoin)系列
 - 区块链基础知识
 - Ethereum
 - Cardano

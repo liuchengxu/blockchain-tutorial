@@ -398,6 +398,8 @@ func NewMerkleTree(data [][]byte) *MerkleTree {
 
 当生成一棵新树时，要确保的第一件事就是叶子节点必须是双数。然后，**数据**（也就是一个序列化后交易的数组）被转换成树的叶子，从这些叶子再慢慢形成一棵树。
 
+[btcsuite/btcd](https://github.com/btcsuite/btcd/blob/50de9da05b50eb15658bb350f6ea24368a111ab7/blockchain/merkle.go#L71-L155) 是用数组实现的 merkle 树，因为这么做可以减少一半的内存使用。
+
 现在，让我们来修改 `Block.HashTransactions`，它用于在工作量证明系统中获取交易哈希：
 
 ```go
