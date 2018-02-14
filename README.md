@@ -1,6 +1,8 @@
 Blockchain Tutorial
 ===================
 
+[![Join the chat at https://gitter.im/liuchengxu/blockchain-tutorial](https://badges.gitter.im/liuchengxu/blockchain-tutorial.svg)](https://gitter.im/liuchengxu/blockchain-tutorial?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 :point_right: [目录](SUMMARY.md)
 
 :point_right: 使用 [gitbook](https://liuchengxu.gitbooks.io/blockchain-tutorial/content/) 阅读（可能需要翻墙）
