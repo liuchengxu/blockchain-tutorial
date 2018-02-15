@@ -41,9 +41,9 @@
 - [区块链共识](misc/blockchain-consensus.md)
 - [区块链经济学：制度加密经济学入门指南](misc/the-blockchain-economy-a-beginners-guide-to-institutional-cryptoeconomics.md)
 
-### Fundamentals
+<!-- ### Fundamentals -->
 
-- [比特币背后的数学](fundamentals/mathematics.md)
+<!-- - [比特币背后的数学](fundamentals/mathematics.md) -->
 
 ----
 
