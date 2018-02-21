@@ -3,7 +3,7 @@ Blockchain Tutorial
 
 [![Join the chat at https://gitter.im/liuchengxu/blockchain-tutorial](https://badges.gitter.im/liuchengxu/blockchain-tutorial.svg)](https://gitter.im/liuchengxu/blockchain-tutorial?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-:point_right: [目录](SUMMARY.md)
+:point_right: [目录](content/SUMMARY.md)
 
 :point_right: 使用 [gitbook](https://liuchengxu.gitbooks.io/blockchain-tutorial/content/) 阅读（可能需要翻墙）
 
@@ -14,7 +14,6 @@ Blockchain Tutorial
 - segmentfault: [liuchengxu](https://segmentfault.com/u/liuchengxu)
 
 因为比较喜欢简书的编辑器，所以可能新文章会先出现在简书，然后“搬运”到其他平台:)。
-
 
 ## Contributions
 

@@ -1,103 +1,88 @@
+IOTA 交易，确认和共识
+====================
 
-><sup>IOTA Donations: QPLGOG9PMIMUAW9UDMUNZQHPXZPXDNGLBEIHILXHWHIOFHLIHPDDERXAJQKUQDEORMHSUWVZQE9JYSHIWADIIPAOJD</sup>
+>原文：https://github.com/noneymous/iota-consensus-presentation
 
-# IOTA 交易，确认和共识
+## Tangle 初始状态
 
-## 初始 Tangle 状态
+与区块链技术不同，IOTA 并不是一条有着时间序列概念，每个区块前后相连的链，链中的每个块包含一些交易。在 IOTA 中，每笔交易都可以其他交易连接（所谓连接，就是验证其他交易），并且可并行发生。下面的内容将就如何在 IOTA 中加入交易，验证交易及其共识机制展开。
 
-![Imgur](https://i.imgur.com/nJEE6Gp.png)
+![初始 tangle 状态](http://upload-images.jianshu.io/upload_images/127313-7916a022a9b78649.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-In contrast to blockchain technologies, IOTA does not build a clocked sequence of static blocks, each one containing a number of transactions. Instead, every single transaction can be attached to a by itself and in parallel to other transactions. The following slides will describe how adding transactions, validation and consensus works in IOTA.
+上图是 tangle 的一个案例，下面内容都会围绕该图展开。绿色交易代表已经被网络以高确定性（high certainty）地确认，蓝色交易是部分确认，也就是确定性较低。灰色（以及下面的黄色）方框表示还没有任何人验证过的 tip （*tip 有尖端，尾部的意思，比如手指尖就可以用这个词，这里的 tip 表示 tangle 中最新的尚无人验证的交易*）。红色交易，表示有冲突，或无效交易。
 
-The graph above shows a sample of a tangle which will be used in the subsequent slides to walk through some examples. In this and subsequent examples, green transactions are already confirmed by the network with high certainty (You‘ll find out why later. Spoiler: As with blockchain, it is about probabilities and there never going to be 100% carved-in-stone certainty), while the blue ones are only partially confirmed (with lower certainty). The grey (and later “yellow”) boxes represent tips without any validation. Red transactions, on the later slides, are conflicting or invalid ones.
-
-In the graph above transaction “α“ is an example of an unusual transaction. It is referencing transaction „h“ and „l“. Since transaction „h“ is already referenced by transaction „l“, “α“ would select one tip (“l”) and one transaction that is obviously no tip at that time anymore (“h”). Such behavior seems to be no issue and tolerated by the network, currently.
-
-
+在上图中，交易 `α` 并非一笔普通交易。它引用了交易 `h` 和 `l`，由于交易 `h` 已经被交易 `l` 引用了， `α` 会选择一个 tip(`l`) 和 一个显然不是 tip 的交易（`h`）。这么做目前似乎并没有问题，网络也允许这样的行为。
 
 ## 加入一笔交易
 
-![Imgur](https://i.imgur.com/jnl4F7n.png)
+![加入一笔交易](http://upload-images.jianshu.io/upload_images/127313-ef9eedc8340e754a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-In order to add a new transaction to the tangle, a user has to randomly pick two tangle tips (yet unconfirmed transactions) and validate them. Validating means that the user is checking the tip‘s signature, its PoW (little “Proof of Work” as spam protection) and makes sure that the tip is not in conflict with any of the previous (directly or indirectly referenced) transactions. If the chosen tips are legit, the user adds its new transaction by referencing them.
+为了向 tangle 中加入一笔新的交易，用户必须从 tangle 中随机挑选出两个 tip（tip 就是尚未确认的交易），并对两个 tip 进行验证。所谓验证，意味着用户需要检查 tip 的签名，即所谓的 PoW，并确保所选的 tip 与之前的任何交易（无论是直接相关还是间接相关）都没有冲突。如果所选的 tip 是合法的，用户就对其进行引用，也就是加入新的交易。
 
-Transactions neither directly nor indirectly referenced by the chosen tips, are irrelevant for the current validation process. Somebody else, or a later transaction will take care of validating and knitting them into the tangle.
+如果交易既没有被所选的 tip 直接引用，也没有被间接引用，那么对于当前的验证过程来说，这些交易就是不相关的交易。对于不相关交易，会由其他人或是之后的交易来进行验证，并将它们加入到 tangle 中。
 
 ## 另一笔交易
 
-![Imgur](https://i.imgur.com/9cLQIS5.png)
+![另一笔交易](http://upload-images.jianshu.io/upload_images/127313-f6c7eaf781fac7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-At the same time (or earlier or later, whatever) another user might be about to add its new transaction in a different position. It chose the tips “z” and “y”. By doing so, it is validating a large portion of the same transactions as already validated via transaction „1“ (“a” to “k”, “m” and “n”), plus some additional ones that were not in the validation path of transaction „1“ (“l”, “o”, “r”, “t”, “v”, “y” and “z”).
-
-
+与此同时（其实不必同时，早一点晚一点都无所谓），另一个用户可能正在一个不同的位置加入新的交易。它选择了 tip `z` 和 `y`。如此一来，它就在更大的范围上验证了已经验证过的同样交易，即 `a` 到 `k`，`m` 到 `n`，加上额外的一些没有在交易 `1` 验证路径上的交易（`l`, `o`, `r`, `t`, `v`, `y` 和 `z`）。
 
 ## 新的 Tangle 状态
 
-![Imgur](https://i.imgur.com/0VrE8BE.png)
+![Imgur](http://upload-images.jianshu.io/upload_images/127313-e9c65514b54cbaf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-By overlaying the validation paths of transaction “1” and “2”, we can see that some of the transactions are only confirmed by one, while others were confirmed by both of them. Transactions validated and confirmed by all of the current tips are considered fully confirmed. Hence, transactions “n” moved deeper into the tangle and turned green now. All subsequent transactions attaching to “1” and/or “2” or its children or theirs again (and so on) will keep re-validating and confirming transaction “n” from now on.
+交易 `1` 和 `2` 的验证路径有重合之处，我们可以看到有一些交易仅被确认一次，有些交易被确认两次。被当前所有 tip 验证和确认的交易就被认为是完全确认。因此，交易 `n` 进入 tangle 更深一层，现在变成了绿色。从现在开始，随后所有连接到 `1` 与/或 `2` 或者它的孩子，将会保持再验证和再确认的交易状态。
 
-What did we learn?
-- Nobody needs to see and validate all transactions. Every user just needs to select and validate two transactions and their parents. By doing so they are only validating a part of the tangle. As other users select and validate different tips and paths, a collaborative validation of the complete tangle emerges. 
-- After some time, once a transaction is deep enough in the tangle, a direct or indirect path from any of latest tips towards it exists. Such a transaction is considered fully confirmed and is going to be re-validated and re-confirmed again by every single new transaction.  We can assume that it got confirmed by all users (and machines) and has high certainty.
-- In order to check for confirmation, a recipient only needs to check whether the transaction is directly or indirectly referenced all available tips yet (or by a certain rate of them if a lower certainty, such as 80%, is accepted). No re-validation or similar is necessary. Note: There might be thousands of tips. Instead of checking the parents of each of them, it is possible to select a random sample and do a statistical evaluation.
+我们已经学到了什么？
 
-Note that transaction “n” did not just get confirmed because we have less tips now. The next slide shows the same sample with more tips.
+- 没有人需要看到和验证所有的交易。每个用户仅需要选择和验证两笔交易及其父交易。如此一来，他们仅验证了 tangle 的一部分而已。当其他用户选择并验证不同的 tip 和路径，完整 tangle 的协同验证就出现了。
 
+- 在某个时间点以后，一旦一笔交易在 tangle 中进入足够深的位置，无论从最新的 tip 中的任意一个，无论从直接或是间接路径上它都存在。这样的交易就被认为是完全确认，并且会被每一个新的交易再验证，再确认。我们可以认为它被所有用户（和机器）确认，并且确定性很高。
 
+- 为了对确认进行检查，接收者只需要检查交易是否被已有的所有 tip 直接或间接引用（或者通过一个确定比率，如果确定性更低的话，比如 80%，也可以接受）。这时候就不需要再验证或是其他类似操作了。注意：可能会有上千个 tip。与其检查每个 tip 的父节点，更可能的是选择一个随机样本，并做一个统计评估。
+
+注意交易 `n` 还没有被确认，因为现在我们的 tip 比较少。下面会展示更多 tip 的场景。
 
 ## 确认级别
 
-![Imgur](https://i.imgur.com/s1oERZN.png)
+![Imgur](http://upload-images.jianshu.io/upload_images/127313-2404bdeafef81129.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-I added some more new tips to show an extended example. For each new tip its validation path is highlighted. By the coloring you can see well which transactions are validated by how many tips and their confirmation levels.
+我加入了一些新的 tip 对上例进行了扩展。对于每个新的 tip，它的验证路径都被高亮了。通过颜色，你可以清楚地看到哪些交易被多少 tip 所验证，及其验证等级。
 
-A merchant may choose a custom confirmation/certainty level. If transaction speed is more important than the value of the transaction (e.g. a micro transaction or zero value transaction), or if the sender is a friend, one may accept something such as a 75% confirmation level. At a 75% certainty level (3 out of 4 tips), the transactions “l”, “o” and “t” could be considered as confirmed, as well.
-
-
+一个商家可能会根据自身情况设定个性化的确认/确定等级。如果交易速度比交易价值更重要（比如微支付或零价值支付），又或者发送方是一个朋友，一个人可能会以 75% 的确认等级接受交易。在 75% 的确定等级（3/4 tip）下，交易 `l`, `o`, 和 `t` 可能也会被确认。
 
 ## 传播延迟
 
-![Imgur](https://i.imgur.com/QLPpmKA.png)
+![传播延迟](http://upload-images.jianshu.io/upload_images/127313-4187c6080889b8cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-Theoretically it could happen that a slow transaction “5” pops up a bit later, due to slower PoW or due to propagation delays. Now that we know of transaction „5“, the transaction „n“ is not fully confirmed by all tips anymore. However, their confirmation certainty is still quite high with 4 out of 5 tips (in reality there would be thousands instead of 5 tips). Keep in mind, it’s all about a high probability of certainty – just as in blockchain technologies with its confirmations where each block on top increases the probability of certainty. 
+理论上，由于更慢的 PoW 或者传播延迟，可能在稍后出现一笔慢速交易 `5`。鉴于我们已经知道了交易 `5`，交易 `n` 就不会再被所有的 tip 完全确认。但是，他们的确认确定性（confirmation certainty）仍然很高，有 4/5 tip 确认（实际上会有上千而不是 5 个 tip）。记住，所有一切都是为了一个高概率的确定性 -- 就像在区块链里面，区块的每次确认就是增加了确定性的概率。
 
-Please note that transaction “5” in this example is NOT flipping the transaction’s state from “confirmed” back to “unconfirmed”. It just changes the mathematically exact number of certainty (e.g. if there were 100 tips in total, from 100% to 99%). Once some subsequent transaction references (e.g.) transaction “1” and “5”, the transactions “n” is fully confirmed by all tips again. Such minor confirmation level variations will even less likely happen, the further transactions move into the tangle.
+请注意，本例中的交易 `5` 的状态并非从 “确认” 转变为 “未确认”。它仅是从改变了数学上精确的确定性比率（比如，如果一共有 100 个 tip，从 100% 到 99%）。一旦一些随后的交易引用了交易 `1` 和 `5`，交易 `n` 就会被所有的 tip 再次完全确认。这样小的确认等级变化将不太可能会发生，更进一步的交易会进入 tangle。 
 
-Please note that a confirmation/certainty level of a 100% might be hard to achieve anyways, as there could always be some troll tip around (e.g., referencing something useless or not following the protocol). 
-
-
+请注意，100% 的确认/确定等级无论如何都很难达到，因为总会出现一些无正面贡献的 tip（比如，引用一些无用的交易，或是根本不遵守协议）。
 
 ## 双花
 
-![Imgur](https://i.imgur.com/DUsFpSA.png)
+![双花](http://upload-images.jianshu.io/upload_images/127313-3d3318619b99e25b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-Imagine a situation where a user adds two conflicting transactions in different areas of the tangle (“w” and “y”). Subsequent users might only have one of these conflicting transactions in their validation path (based on their tip selection and maybe due to propagation delays). For example, the users attaching transactions “1” and “2” will not see the conflict and confirm their chosen tips. Hence, the double spend attempt got its first confirmations. However, sooner or later it must happen, that both conflicting transactions are in the path of validation of one transaction. For example, transaction “5” would see the conflict and not attach to the elected tips. Instead it would reselect tips until it found to not conflicting ones in order to be sure itself turns into a valid transaction.
+想象这样一种情况，一个用户在 tangle 的两个不同的地方加入了两笔冲突的交易（`w` 和 `y`）。对于随后的用户，在他们的验证路径上可能只有这些冲突交易里面的其中一笔（取决于他们的 tip 选择，和一些可能的传播时延）。比如，加入了交易 `1` 和 `2` 的用户就不会看到冲突，并会确认他们所选的 tip。因此，双花就得到了第一次确认。但是，迟早必然会发生的是，这两笔冲突的交易会出现在一笔交易的验证路径上。比如，交易 5 就会看到冲突，继而不会确认选出的 tip。相反，为了确保它自身会是一笔有效的交易，它会重新选择 tip 直到找到不冲突的交易。
 
-Depending on the tip selection and tangle progress, it might happen that many more users attach their transactions behind “w” OR “y”, before the conflict becomes clear. Depending on where users attached most new transactions, either “w” or “y” will confirm at some point, while the other gets abandoned. All subsequent transactions attached to the abandoned one (as they couldn’t see the conflict coming) will also be abandoned. However, they are not lost but can be taken by anybody (but most likely the payment recipient) and reattached to the tangle for a new chance of confirmation. The PoW would need to be redone, but no fresh signatures from the sender are required.
-
-
+依赖于 tip 的选择和 tangle 的推进，在冲突变得逐渐清晰之前，可能会有更多的用户在 `w` 或 `y` 后面附加交易。取决于用户在哪里附加最多新的交易，`w` 或者 `y` 都会在某个点确认，但是其他会被丢弃。被丢弃交易（因为它们看不到即将到来的冲突）后面的所有交易也会被丢弃。但是，这些交易并不会丢失，而是可能被任何人（但最可能是交易接收方）接受，并为了新的确认机会再次附加到 tangle。这时，PoW 就需要重新来过，但是并不需要从发送方发送新的签名了。
 
 ## 解决双花
 
-![Imgur](https://i.imgur.com/pbOjVu1.png)
+![解决双花](http://upload-images.jianshu.io/upload_images/127313-e29a813637a274cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-In the previous slide a user tried to connect a transaction “5” to the tips “1” and “2”. Due to a conflict it retried the tip selection, and decided to attach to tips “1” and “4”. Another user (or maybe the same one) chose tips “2” and “3” to attach transaction “7”.  Some kind of branches emerged, but only one can survive, due to the double spend in “w” and “y”. Based on the random selection of tips (and the cumulative weight of the transactions), one of the two branches will receive more child transactions (respectively, weight) until the tangle turns into a state where it is not possible to attach legitimately to one of the segments anymore. In the sample above users could just continue attaching to transactions “5”, “6” and “8” but not to transaction “7” anymore. Hence, transactions “y”, “2”, “3” and “7” will never make it into a fully confirmed state.
+上面已经说到，一个用户尝试将交易 `5` 与 tip `1` 和 `2` 相连。由于冲突，它重新进行选择 tip，并且决定连接到 tip `1` 和 `4`。另一个用户（也可能是同一个）选择 tip `2` 和 `3` 连接到交易 7。虽然出现了多个分支，但是由于 `w` 和 `y `的双花，只有一个能够存活。基于 tip 的随机选择（和交易的累积权重），这两个分支的其中一个会接收更多的的子交易（独立的，权重）直到 tangle 进入一个状态，在这个状态里就不可能再合法地附加任一片段。在上面的示例中，用户可能继续与交易 `5`，`6` 和 `8` 相连，但是不会连接到交易 `7`。因此，交易 `y`，`2`，`3` 和 `7` 将永远也不会成为一个完全确认的状态。
 
-As described in the previous slide, transactions “y”, “2”, “3” and “7” could be reattached to the tangle again. As long as they are (still) valid, they have a fresh chance of confirmation. Transactions “2”, “3” and “7” might become confirmed then, while transaction “y” will stay invalid.
-
-
+正如上面所说的，交易 `y`，`2`，`3` 和 `7` 可能被再次加入 tangle 。只要他们（仍然）是有效的，就会新的机会被确认。交易 `2`，`3` 和 `7` 可能然后被确认，但是交易 `y` 仍然无效。
 
 ## 离线 Tangle
 
-![Imgur](https://i.imgur.com/C0zaub3.png)
+![离线 tangle](http://upload-images.jianshu.io/upload_images/127313-6b87ca4b980e26ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-The tangle allows users to continue building transactions while they are offline (e.g. within a company intranet environment, or to continue interacting with neighbors during an Internet outage). To do so, transactions are created and connected to each other as described by the protocol. 
+tangle 能够让用户在离线的情况下，仍然能够继续构建交易，比如在公司内部的局域网，或者在断电的情况下与邻居继续交互。如此，依照协议规定创建交易，并相互连接。
 
-In the sample above, transactions “1” and “2” are the first offline ones. They are connected to the last known tips of the online tangle. Subsequent transactions attach as usual. Once a commit to the main tangle is desired (or possible, in case of an Internet outage), the offline sub tangle is finalized by creating transaction “8”, which is merging the offline tangle with a recent tip of the online tangle. Subsequently, transaction “8” turns into a legit tip and can be selected and validated by later online transactions. The next users attaching to transaction “8” online will include all offline transaction in their validation routine.
+在上面的案例中，交易 `1` 和 `2` 是首先离线的一批。它们与在线 tangle（online tangle） 最后已知的 tip 相连。随后的交易与往常一样不断地附加到后面。一旦有向主 tangle（main tangle） 的提交（commit），离线的子 tangle 就会通过创建交易 `8` 得到最终确定，它会将离线 tangle 与当前在线 tangle 的 tip 进行合并。随后，交易 `8` 变为一个合法的 tip，并且可供后面的在线交易进行选择和验证。在线连接到交易 `8` 的下一个用户，将会在他们的验证路径上包含所有的离线交易。
 
-Please note, that offline transactions can only become fully confirmed once they made it into the main tangle like any other transaction, just as shown on the previous slides. If any transaction within the offline branch was conflicting with the main tangle, the transactions “1” to “8” would not become confirmed. Again it might take some subsequent transactions until the conflict is visible from all (or the majority) of the main tangle’s tips (as described in slide 8 “Double Spend”).
-
-
-
-
+请注意，正如上文，只有当离线交易跟其他交易一样，被加入到主 tangle 中，离线交易才会被完全确认。如果离线分支中的任何交易与主 tangle 冲突，交易 `1` 到 `8` 就不会被确认。再一次的，它可能会花费随后几个交易的时间，直至冲突对于主 tangle 的所有（或者大部分） tip 都可见（也就是上面所说的 “双花”）。
