@@ -42,7 +42,7 @@ func (tx Transaction) IsCoinbase() bool {
 	return len(tx.Vin) == 1 && len(tx.Vin[0].Txid) == 0 && tx.Vin[0].Vout == -1
 }
 
-func (tx Transaction) SetID() {
+func (tx *Transaction) SetID() {
 	var encoded bytes.Buffer
 	var hash [32]byte
 
