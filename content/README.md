@@ -15,6 +15,6 @@
 
 ## Donation
 
-BTC: 1FLctnA5iRqba3cuc1xUACuAaAVWKqjUwr
-BCH: qp2vp4ev0aygatuv4mnxnhc5vevu5susjsj6f8wwp6
-ETH: 0xBE5d431e7D2273340F6e76061C05bb42Bc39103d
+- BTC: `1FLctnA5iRqba3cuc1xUACuAaAVWKqjUwr`
+- BCH: `qp2vp4ev0aygatuv4mnxnhc5vevu5susjsj6f8wwp6`
+- ETH: `0xBE5d431e7D2273340F6e76061C05bb42Bc39103d`
