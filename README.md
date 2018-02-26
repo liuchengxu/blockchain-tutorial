@@ -15,6 +15,12 @@ Blockchain Tutorial
 
 因为比较喜欢简书的编辑器，所以可能新文章会先出现在简书，然后“搬运”到其他平台:)。
 
+## Donation
+
+BTC: 1FLctnA5iRqba3cuc1xUACuAaAVWKqjUwr
+BCH: qp2vp4ev0aygatuv4mnxnhc5vevu5susjsj6f8wwp6
+ETH: 0xBE5d431e7D2273340F6e76061C05bb42Bc39103d
+
 ## Contributions
 
 - 勘误，更好的翻译，解释等等
