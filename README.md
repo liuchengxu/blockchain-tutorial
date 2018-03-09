@@ -15,6 +15,8 @@ Blockchain Tutorial
 
 因为比较喜欢简书的编辑器，所以可能新文章会先出现在简书，然后“搬运”到其他平台:)。
 
+*在这里打个广告：如果对智能合约感兴趣的话，可以看一下 [zastrin.com](https://cn.zastrin.com/) 的智能合约培训，中文版是我翻译的，在学习过程中有问题的话也可以问我。*
+
 ## Donation
 
 - BTC: `1FLctnA5iRqba3cuc1xUACuAaAVWKqjUwr`
