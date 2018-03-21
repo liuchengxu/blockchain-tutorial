@@ -44,6 +44,7 @@
 
 - [区块链共识](misc/blockchain-consensus.md)
 - [区块链经济学：制度加密经济学入门指南](misc/the-blockchain-economy-a-beginners-guide-to-institutional-cryptoeconomics.md)
+- [DPOS 共识算法 - 缺失的白皮书](misc/dpos-consensus-algorithm-this-missing-white-paper.md)
 
 <!-- ### Fundamentals -->
 
