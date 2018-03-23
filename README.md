@@ -30,6 +30,8 @@ Blockchain Tutorial
 
 ## Resources
 
+Python 版本的 [Jeiwan/blockchain_go](https://github.com/Jeiwan/blockchain_go): [blockchain-py](https://github.com/yummybian/blockchain-py)
+
 ### Python
 
 - [write-your-own-blockchain](https://bigishdata.com/2017/10/17/write-your-own-blockchain-part-1-creating-storing-syncing-displaying-mining-and-proving-work/)

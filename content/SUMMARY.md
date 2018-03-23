@@ -7,17 +7,11 @@
 ### Bitcoin
 
 * [基本原型](part-1/basic-prototype.md)
-
 * [工作量证明](part-2/proof-of-work.md)
-
 * [持久化和命令行接口](part-3/persistence-and-cli.md)
-
 * [交易（1）](part-4/transactions-1.md)
-
 * [地址](part-5/address.md)
-
 * [交易（2）](part-6/transactions-2.md)
-
 * [网络](part-7/network.md)
 
 ### Ethereum
