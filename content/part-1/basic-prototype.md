@@ -195,15 +195,15 @@ $ cd src
 $ make
 ==> Go build
 ==> Running
-Prev hash:
+Prev. hash:
 Data: Genesis Block
 Hash: 4693b71eee96760de4b0f051083376dcbed2f0711a44294ee5fd42fbeacc9579
 
-Prev hash: 4693b71eee96760de4b0f051083376dcbed2f0711a44294ee5fd42fbeacc9579
+Prev. hash: 4693b71eee96760de4b0f051083376dcbed2f0711a44294ee5fd42fbeacc9579
 Data: Send 1 BTC to Ivan
 Hash: 839380a2d0af1dc4686f16ade5423fecdc5f287db9322d9e18adcb4071e7c8ff
 
-Prev hash: 839380a2d0af1dc4686f16ade5423fecdc5f287db9322d9e18adcb4071e7c8ff
+Prev. hash: 839380a2d0af1dc4686f16ade5423fecdc5f287db9322d9e18adcb4071e7c8ff
 Data: Send 2 more BTC to Ivan
 Hash: b38052a029bd2b1b9d4bb478af45b4c88605e99bc64e49031ba06d21ad4b0b38
 ```
