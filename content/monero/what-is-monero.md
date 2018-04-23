@@ -15,7 +15,7 @@
 
 门罗由一个 7 人的开发者团队领导，其中 5 人匿名，另 2 人已公开。他们是 David Latapie 和 Riccardo Spagni aka “Fluffypony”。项目是开源众筹的形式进行。
 
-![The core team](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image12.jpg)
+![The core team](https://blockgeeks.com/wp-content/uploads/2017/09/image12.jpg)
 
 ## 门罗的特别之处
 
@@ -108,7 +108,7 @@ public spend key 构成门罗地址第二部分。
 
 所以，假设 Alice 需要从下列交易从获得输入，比如 TX(0), TX(1) 和 TX(2)。这三笔交易会被一起包含到这笔交易，并有一个交易输出 TX(Input).
 
-![transaction input](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/moner1.png)
+![transaction input](https://blockgeeks.com/wp-content/uploads/2017/09/moner1.png)
 
 这是从输入来看，下面让我们来看一下输出。
 
@@ -116,13 +116,13 @@ public spend key 构成门罗地址第二部分。
 
 输出就是 Bob 可以在之后交易花费的钱，也可能会出现找零，找零会返回给 Alice。找零会成为 Alice 未来任意交易的输入。
 
-![transaction output](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/monero2.png)
+![transaction output](https://blockgeeks.com/wp-content/uploads/2017/09/monero2.png)
 
 这笔交易非常简单，因为只有一个输出（除了找零）。其实交易很可能会有多个输出。
 
 有了公钥加密以后，比特币交易才成为可能。为了对它有一个基本的理解，请看下图：
 
-![transaction flowchart](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image14-1.png)
+![transaction flowchart](https://blockgeeks.com/wp-content/uploads/2017/09/image14-1.png)
 
 比特币用户首先选择私钥，公钥由私钥衍生而来。将公钥进行哈希得到一个公开的地址公布出去。如果 Alice 要给 Bob 发送 BTC，Alice 直接给 Bob 公开的地址发送即可。
 
@@ -130,7 +130,7 @@ public spend key 构成门罗地址第二部分。
 
 下图是门罗团队给出的“电子现金三角（Electronic cash triangle）”
 
-![Electronic cash triangle](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image13-1.png)
+![Electronic cash triangle](https://blockgeeks.com/wp-content/uploads/2017/09/image13-1.png)
 
 正如他们所说，一个理想的电子现金应该满足三个前提：
 
@@ -164,7 +164,7 @@ public spend key 构成门罗地址第二部分。
 
 那么，假设 Alice 选择的 ring size 为 5 ，也就是说 4 个 decoy output（诱骗输出） 和它自己的交易，从外面看起来就像这样：
 
-![5 decoy ouput and alice's own transaction](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image16-1.png)
+![5 decoy ouput and alice's own transaction](https://blockgeeks.com/wp-content/uploads/2017/09/image16-1.png)
 
 在一个环签名交易中，任意一个 decoy 就像真实输出一样，因为任何不相关的第三方（包括矿工）都无法知道发送方是谁。
 
@@ -228,7 +228,7 @@ $$
 
 如果 Alice 要发送给 Bob 12.5 XMR，输出将会被分为 3 笔交易，10，2，0.5. 这些交易的每一笔都会有自己的环签名，然后被加入到区块链：
 
-![monero](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image15-1.png)
+![monero](https://blockgeeks.com/wp-content/uploads/2017/09/image15-1.png)
 
 尽管这确实保证了发送方的隐私，但是也将交易暴露给了所有人。
 
@@ -260,7 +260,7 @@ Kovri 仍处于开发阶段（截止成文之时），尚未实现。
 
 门罗市值已经获得了巨大增长：
 
-![monero's growth graph](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image18.png)
+![monero's growth graph](https://blockgeeks.com/wp-content/uploads/2017/09/image18.png)
 
 根据 coinmarketcap.com，截止 2018 年 2 月 16 日 17 时 41 分，流通的门罗有 15,726,996 XMR，每个门罗币价值 1,855.38 CNY，市值 29,179,631,714 CNY，排名 13。
 
@@ -272,15 +272,15 @@ Kovri 仍处于开发阶段（截止成文之时），尚未实现。
 
 Step 1: 点击 “Create a new account”
 
-![点击 Create an Account](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image17-1.png)
+![点击 Create an Account](https://blockgeeks.com/wp-content/uploads/2017/09/image17-1.png)
 
 Step 2: 将 private login key 记下来
 
-![记住登录私钥](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image22-1.png)
+![记住登录私钥](https://blockgeeks.com/wp-content/uploads/2017/09/image22-1.png)
 
 Step 3: 输入登录私钥并获得地址
 
-![地址](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image20.png)
+![地址](https://blockgeeks.com/wp-content/uploads/2017/09/image20.png)
 
 完成！
 
@@ -290,11 +290,11 @@ Step 3: 输入登录私钥并获得地址
 
 如果忘记了私钥，点击 Account，然后点击 "Review Login Key"。
 
-![Review Login Key](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image25.png)
+![Review Login Key](https://blockgeeks.com/wp-content/uploads/2017/09/image25.png)
 
 然后就看到私钥：
 
-![review the private login key](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image23-1.png)
+![review the private login key](https://blockgeeks.com/wp-content/uploads/2017/09/image23-1.png)
 
 So easy!
 
@@ -306,7 +306,7 @@ So easy!
 
 [Lindia Xie](https://medium.com/@linda.xie) 在他的 medium 文章中，已经就门罗和比特币给出了一个很好的比较：
 
-![comparison between  Monero and Bitcoin](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image24-1.png)
+![comparison between  Monero and Bitcoin](https://blockgeeks.com/wp-content/uploads/2017/09/image24-1.png)
 
 上图的 makerket cap 已过时，可在 [coinmarketcap.com](http://coinmarketcap.com/) 查看最新市值。
 
@@ -327,7 +327,7 @@ So easy!
 
 - 尽管门罗已经被设计为防 ASIC 来避免中心化，但是门罗接近 43% 的算力仍然为 3 个矿池所有：
 
-![Monero Hash](https://d2omlh28jsv4r7.cloudfront.net/wp-content/uploads/2017/09/image27-1.png)
+![Monero Hash](https://blockgeeks.com/wp-content/uploads/2017/09/image27-1.png)
 
 - 比起其他加密货币，由于涉及了很多的加密操作，门罗的交易大小要大得多。
 - 门罗的钱包兼容性不强。事实上，门罗至今没有硬件钱包（截止成文之时）。
