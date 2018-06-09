@@ -43,6 +43,14 @@ Python 版本的 [Jeiwan/blockchain_go](https://github.com/Jeiwan/blockchain_go)
 - [blockchain](https://github.com/izqui/blockchain)
 - [naivechain](https://github.com/kofj/naivechain)
 
+### 视频教程
+
+- [完整视频教程 by liyuechun](https://www.youtube.com/channel/UCRxmNhjCYQkGVbKSumcK5Wg/videos?view_as=subscriber)
+- [视频教程佩戴源码下载](https://github.com/liyuechun/blockchain_go_videos)
+
+
 ## Credits
 
 - [blockchain_go](https://github.com/Jeiwan/blockchain_go)
+
+
