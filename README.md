@@ -7,15 +7,13 @@ Blockchain Tutorial
 
 :point_right: 使用 [gitbook](https://liuchengxu.gitbooks.io/blockchain-tutorial/content/) 阅读（可能需要翻墙）
 
-最初，本教程最初是译自 [Jeiwan/blockchain_go](https://github.com/Jeiwan/blockchain_go) 的系列文章。随着对区块链认识的不断深入，我也会不断地进行补充和丰富。大家也可以关注我的其他平台账号，我会将一些觉得有内容的文章整理到这里：
+本教程最初是译自 [Jeiwan/blockchain_go](https://github.com/Jeiwan/blockchain_go) 的系列文章。随着对区块链认识的不断深入，我也会不断地进行补充和丰富。大家也可以关注我的其他平台账号，我会将一些觉得有内容的文章整理到这里：
 
 - 简书：[liuchengxu](https://www.jianshu.com/u/daf68451f175)
 - CSDN: [liuchengxu_](http://blog.csdn.net/simple_the_best)
 - segmentfault: [liuchengxu](https://segmentfault.com/u/liuchengxu)
 
 因为比较喜欢简书的编辑器，所以可能新文章会先出现在简书，然后“搬运”到其他平台:)。
-
-:warning: *在这里打个广告：如果对智能合约感兴趣的话，可以看一下 [zastrin.com](https://cn.zastrin.com/) 的智能合约培训，中文版是我翻译的，在学习过程中有问题的话也可以问我。*
 
 ## Donation
 

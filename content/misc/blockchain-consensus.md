@@ -16,6 +16,8 @@
 
 代表：Bitcoin, Ethereum, Litecoin, Zcash, Dogecoin
 
+难度最大的链
+
 
 ### PoS
 
