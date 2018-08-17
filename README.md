@@ -1,7 +1,12 @@
 Blockchain Tutorial
 ===================
 
-[![Join the chat at https://gitter.im/liuchengxu/blockchain-tutorial](https://badges.gitter.im/liuchengxu/blockchain-tutorial.svg)](https://gitter.im/liuchengxu/blockchain-tutorial?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+<h1 align="center"><a href="https://github.com/liuchengxu/blockchain-tutorial/wiki">Opinioned Blockchain Reading List</a></h1>
+<p align="center">A collection of blockchain resources.</p>
+
+Wiki 维护了一个阅读列表: [Opinioned Blockchain Reading List](https://github.com/liuchengxu/blockchain-tutorial/wiki), 我会整理一些值得阅读研究的资源，大部分是英文的，欢迎贡献对应的中文资源。
+
+----
 
 :point_right: [目录](content/SUMMARY.md)
 
