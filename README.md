@@ -1,12 +1,12 @@
-Blockchain Tutorial
-===================
-
 <h1 align="center"><a href="https://github.com/liuchengxu/blockchain-tutorial/wiki">Opinioned Blockchain Reading List</a></h1>
 <p align="center">A collection of blockchain resources.</p>
 
 Wiki 维护了一个阅读列表: [Opinioned Blockchain Reading List](https://github.com/liuchengxu/blockchain-tutorial/wiki), 我会整理一些值得阅读研究的资源，大部分是英文的，欢迎贡献对应的中文资源。
 
 ----
+
+Blockchain Tutorial
+===================
 
 :point_right: [目录](content/SUMMARY.md)
 
