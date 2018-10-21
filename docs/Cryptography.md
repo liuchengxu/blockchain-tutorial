@@ -1,0 +1,2 @@
+- [Faster Bulletproofs with Ristretto & AVX2](https://blog.chain.com/faster-bulletproofs-with-ristretto-avx2-29450b4490cd)
+- [Hash-based Signatures: An illustrated Primer](https://blog.cryptographyengineering.com/2018/04/07/hash-based-signatures-an-illustrated-primer/)
