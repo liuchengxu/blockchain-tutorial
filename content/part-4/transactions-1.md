@@ -25,7 +25,7 @@ type Transaction struct {
 
 对于每一笔新的交易，它的输入会引用（reference）之前一笔交易的输出（这里有个例外，coinbase 交易），引用就是花费的意思。所谓引用之前的一个输出，也就是将之前的一个输出包含在另一笔交易的输入当中，就是花费之前的交易输出。交易的输出，就是币实际存储的地方。下面的图示阐释了交易之间的互相关联：
 
-![the interconnection of transactions](http://upload-images.jianshu.io/upload_images/127313-4f8e668c826fd31a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![the interconnection of transactions](../images/127313-4f8e668c826fd31a.png)
 
 注意：
 

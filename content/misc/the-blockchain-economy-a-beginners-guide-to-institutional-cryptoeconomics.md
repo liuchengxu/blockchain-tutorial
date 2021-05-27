@@ -42,7 +42,7 @@
 
 在数字时代之前，占有权指的是对那种权利的所有权。澳大利亚的护照账本，由各州政府持有的索引卡组成。当旅行人员向边境的工作人员出示护照时，工作人员就可以做出如下推测：这个旅行者被记录在一个远程账本上，并被获准旅行。当然，这种激进的边境管制，很容易遭受诈骗风险。
 
-![一张收藏在澳大利亚国家档案馆的比利时护照，A435 1944 / 4 / 2579](http://upload-images.jianshu.io/upload_images/127313-9caab2339f93b153.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![一张收藏在澳大利亚国家档案馆的比利时护照，A435 1944 / 4 / 2579](../images/127313-9caab2339f93b153.png)
 
 占有权**隐含(imply)**了所有权，但是所有权**不等于**占有权。如今，现代护照可以让当局直接确认所有权。基于其数字特征，航空公司和移民局可以通过访问国家护照数据中心，以此决定是否让这位旅客自由通行。
 
@@ -58,7 +58,7 @@
 
 账本出现在文字交流(written communication)的初期。在古代近东地区，**账本和书写**同时发展起来以记录生产，交易和债务。通过在泥板上刻下楔形文字，来详细记录口粮、税收、工人等详细信息，然后将其烧制保存。首个国际“社区”是以结构化的网络联盟形式组建的，[其运作方式和分布式账本(distributed ledger)非常相像](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3016649)。
 
-![一张由大英博物馆收藏的巴比伦尼亚楔形文字账本残片，58278-](http://upload-images.jianshu.io/upload_images/127313-5e6c75f6cea7fa92.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![一张由大英博物馆收藏的巴比伦尼亚楔形文字账本残片，58278-](../images/127313-5e6c75f6cea7fa92.png)
 
 账本的第一次重大变化出现在十四世纪，当时的人们发明了复式记账法(double entry bookkeeping)。通过同时记录借贷数据，复式记账法需要在多个（分布式）账本里保存数据，同时考虑各账本之间的一致性（reconciliation）。
 
@@ -82,7 +82,7 @@
 
 **但是区块链同时也是反企业，反政府的**。区块链是一项制度级的技术，它是一种维护账本的新方式，[即协作性经济活动](https://www.academia.edu/33138299/Blockchains_and_the_economic_institutions_of_capitalism)，这种方式与企业和政府完全不同。
 
-![新资本主义经济制度](http://upload-images.jianshu.io/upload_images/127313-60b2cac4fb9fccfc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![新资本主义经济制度](../images/127313-60b2cac4fb9fccfc.png)
 
 区块链可以为企业所用，但是，区块链也可以将其取而代之。现在，一个合约和资本账本能够以去中心化和分布式的方式存在，这是一种前所未有的方式。无需政府支持，就可以维护和执行记载着身份、许可、特权以及授权的账本。
 
@@ -126,7 +126,7 @@
 
 在机械时间出现以前，人类活动受制于大自然的临时调控：公鸡黎明报晓，夜晚逐渐黑暗。正如经济史学家 Douglas W. Allen 提出的，问题在于可变因素：“测量时间的变量太过繁多……以至于无法在许多日常活动中找到借鉴意义。”
 
-![十二世纪的 Jayrun 水钟](http://upload-images.jianshu.io/upload_images/127313-f4f76e554a475825.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![十二世纪的 Jayrun 水钟](../images/127313-f4f76e554a475825.png)
 
 “在任何地方都能感受到因减少度量时间的可变因素所带来的影响”，Allen如此写道。机械时间开启了一个让人难以置信且几乎不可能出现的经济组织的全新分类。机械时间使贸易和交换得以同步，超越了地域的限制。它让生产和运输可以相互协调，让一天的安排得以实现，让劳动按照工时得到相应的报酬（让劳动者知道他们是否得到了合理的报酬）。雇主和雇员都能根据一种标准化的，独立的工具来验证契约被履行了。
 
@@ -156,7 +156,7 @@ Oliver Williamson 和 Ronald Coase（1991年诺贝尔经济学奖获得者）将
 
 当储户们发现（或者只是单纯的想象）他们储蓄的银行可能无法兑现他们的存款，人们将争先恐后地取钱。
 
-![电影《欢乐满人间》中的银行挤兑的场景（1964年）](http://upload-images.jianshu.io/upload_images/127313-db16fcaa52e1ecc9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![电影《欢乐满人间》中的银行挤兑的场景（1964年）](../images/127313-db16fcaa52e1ecc9.png)
 
 区块链可能的一种应用是，让储户和股东们持续监控银行的储备金和贷款，从而充分消除他们和银行管理层之间的信息不对称。
 

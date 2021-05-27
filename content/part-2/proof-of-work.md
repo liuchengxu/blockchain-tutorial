@@ -23,7 +23,7 @@
 2. 对于特定的数据，只能有一个哈希，并且这个哈希是唯一的。
 3. 即使是仅仅改变输入数据中的一个字节，也会导致输出一个完全不同的哈希。
 
-![hashing](http://upload-images.jianshu.io/upload_images/127313-e9b0730b1798704d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![hashing](../images/127313-e9b0730b1798704d.png)
 
 哈希函数被广泛用于检测数据的一致性。软件提供者常常在除了提供软件包以外，还会发布校验和。当下载完一个文件以后，你可以用哈希函数对下载好的文件计算一个哈希，并与作者提供的哈希进行比较，以此来保证文件下载的完整性。
 
@@ -46,7 +46,7 @@
 
 为了阐释这一算法，我从前一个例子（“I like donuts”）中取得数据，并且找到了一个前 3 个字节是全是 0 的哈希。
 
-![a hash that starts with 3 zero-bytes](http://upload-images.jianshu.io/upload_images/127313-98fa6d44aad3701f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![a hash that starts with 3 zero-bytes](../images/127313-98fa6d44aad3701f.png)
 
  **ca07ca** 是计数器的 16 进制值，十进制的话是 13240266.
 
@@ -123,7 +123,7 @@ func main() {
 
 输出：
 
-![experiment](http://upload-images.jianshu.io/upload_images/127313-500001f22e8ed4a6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![experiment](../images/127313-500001f22e8ed4a6.png)
 
 你可以把目标想象为一个范围的上界：如果一个数（由哈希转换而来）比上界要小，那么是有效的，反之无效。因为要求比上界要小，所以会导致有效数字并不会很多。因此，也就需要通过一些困难的工作（一系列反复地计算），才能找到一个有效的数字。
 
@@ -299,7 +299,7 @@ PoW: true
 
 从下图可以看出，这次我们产生三个块花费了一分多钟，比没有工作量证明之前慢了很多（也就是成本高了很多）：
 
-![output](http://upload-images.jianshu.io/upload_images/127313-3761d41e37f5a6de.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![output](../images/127313-3761d41e37f5a6de.png)
 
 ## 总结
 
