@@ -467,7 +467,7 @@ Hash: 000000edc4a82659cebf087adee1ea353bd57fcd59927662cd5ff1c4f618109b
 PoW: true
 ```
 
-![test](http://upload-images.jianshu.io/upload_images/127313-996c857601ed80a1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![test](../images/127313-996c857601ed80a1.png)
 
 
 参考：
