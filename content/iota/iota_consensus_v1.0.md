@@ -7,7 +7,7 @@ IOTA 交易，确认和共识
 
 与区块链技术不同，IOTA 并不是一条有着时间序列概念，每个区块前后相连的链，链中的每个块包含一些交易。在 IOTA 中，每笔交易都可以其他交易连接（所谓连接，就是验证其他交易），并且可并行发生。下面的内容将就如何在 IOTA 中加入交易，验证交易及其共识机制展开。
 
-![初始 tangle 状态](http://upload-images.jianshu.io/upload_images/127313-7916a022a9b78649.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![初始 tangle 状态](../images/127313-7916a022a9b78649.png)
 
 上图是 tangle 的一个案例，下面内容都会围绕该图展开。绿色交易代表已经被网络以高确定性（high certainty）地确认，蓝色交易是部分确认，也就是确定性较低。灰色（以及下面的黄色）方框表示还没有任何人验证过的 tip （*tip 有尖端，尾部的意思，比如手指尖就可以用这个词，这里的 tip 表示 tangle 中最新的尚无人验证的交易*）。红色交易，表示有冲突，或无效交易。
 
@@ -15,7 +15,7 @@ IOTA 交易，确认和共识
 
 ## 加入一笔交易
 
-![加入一笔交易](http://upload-images.jianshu.io/upload_images/127313-ef9eedc8340e754a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![加入一笔交易](../images/127313-ef9eedc8340e754a.png)
 
 为了向 tangle 中加入一笔新的交易，用户必须从 tangle 中随机挑选出两个 tip（tip 就是尚未确认的交易），并对两个 tip 进行验证。所谓验证，意味着用户需要检查 tip 的签名，即所谓的 PoW，并确保所选的 tip 与之前的任何交易（无论是直接相关还是间接相关）都没有冲突。如果所选的 tip 是合法的，用户就对其进行引用，也就是加入新的交易。
 
@@ -23,13 +23,13 @@ IOTA 交易，确认和共识
 
 ## 另一笔交易
 
-![另一笔交易](http://upload-images.jianshu.io/upload_images/127313-f6c7eaf781fac7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![另一笔交易](../images/127313-f6c7eaf781fac7f4.png)
 
 与此同时（其实不必同时，早一点晚一点都无所谓），另一个用户可能正在一个不同的位置加入新的交易。它选择了 tip `z` 和 `y`。如此一来，它就在更大的范围上验证了已经验证过的同样交易，即 `a` 到 `k`，`m` 到 `n`，加上额外的一些没有在交易 `1` 验证路径上的交易（`l`, `o`, `r`, `t`, `v`, `y` 和 `z`）。
 
 ## 新的 Tangle 状态
 
-![Imgur](http://upload-images.jianshu.io/upload_images/127313-e9c65514b54cbaf1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Imgur](../images/127313-e9c65514b54cbaf1.png)
 
 交易 `1` 和 `2` 的验证路径有重合之处，我们可以看到有一些交易仅被确认一次，有些交易被确认两次。被当前所有 tip 验证和确认的交易就被认为是完全确认。因此，交易 `n` 进入 tangle 更深一层，现在变成了绿色。从现在开始，随后所有连接到 `1` 与/或 `2` 或者它的孩子，将会保持再验证和再确认的交易状态。
 
@@ -45,7 +45,7 @@ IOTA 交易，确认和共识
 
 ## 确认级别
 
-![Imgur](http://upload-images.jianshu.io/upload_images/127313-2404bdeafef81129.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Imgur](../images/127313-2404bdeafef81129.png)
 
 我加入了一些新的 tip 对上例进行了扩展。对于每个新的 tip，它的验证路径都被高亮了。通过颜色，你可以清楚地看到哪些交易被多少 tip 所验证，及其验证等级。
 
@@ -53,7 +53,7 @@ IOTA 交易，确认和共识
 
 ## 传播延迟
 
-![传播延迟](http://upload-images.jianshu.io/upload_images/127313-4187c6080889b8cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![传播延迟](../images/127313-4187c6080889b8cb.png)
 
 理论上，由于更慢的 PoW 或者传播延迟，可能在稍后出现一笔慢速交易 `5`。鉴于我们已经知道了交易 `5`，交易 `n` 就不会再被所有的 tip 完全确认。但是，他们的确认确定性（confirmation certainty）仍然很高，有 4/5 tip 确认（实际上会有上千而不是 5 个 tip）。记住，所有一切都是为了一个高概率的确定性 -- 就像在区块链里面，区块的每次确认就是增加了确定性的概率。
 
@@ -63,7 +63,7 @@ IOTA 交易，确认和共识
 
 ## 双花
 
-![双花](http://upload-images.jianshu.io/upload_images/127313-3d3318619b99e25b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![双花](../images/127313-3d3318619b99e25b.png)
 
 想象这样一种情况，一个用户在 tangle 的两个不同的地方加入了两笔冲突的交易（`w` 和 `y`）。对于随后的用户，在他们的验证路径上可能只有这些冲突交易里面的其中一笔（取决于他们的 tip 选择，和一些可能的传播时延）。比如，加入了交易 `1` 和 `2` 的用户就不会看到冲突，并会确认他们所选的 tip。因此，双花就得到了第一次确认。但是，迟早必然会发生的是，这两笔冲突的交易会出现在一笔交易的验证路径上。比如，交易 5 就会看到冲突，继而不会确认选出的 tip。相反，为了确保它自身会是一笔有效的交易，它会重新选择 tip 直到找到不冲突的交易。
 
@@ -71,7 +71,7 @@ IOTA 交易，确认和共识
 
 ## 解决双花
 
-![解决双花](http://upload-images.jianshu.io/upload_images/127313-e29a813637a274cf.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![解决双花](../images/127313-e29a813637a274cf.png)
 
 上面已经说到，一个用户尝试将交易 `5` 与 tip `1` 和 `2` 相连。由于冲突，它重新进行选择 tip，并且决定连接到 tip `1` 和 `4`。另一个用户（也可能是同一个）选择 tip `2` 和 `3` 连接到交易 7。虽然出现了多个分支，但是由于 `w` 和 `y `的双花，只有一个能够存活。基于 tip 的随机选择（和交易的累积权重），这两个分支的其中一个会接收更多的的子交易（独立的，权重）直到 tangle 进入一个状态，在这个状态里就不可能再合法地附加任一片段。在上面的示例中，用户可能继续与交易 `5`，`6` 和 `8` 相连，但是不会连接到交易 `7`。因此，交易 `y`，`2`，`3` 和 `7` 将永远也不会成为一个完全确认的状态。
 
@@ -79,7 +79,7 @@ IOTA 交易，确认和共识
 
 ## 离线 Tangle
 
-![离线 tangle](http://upload-images.jianshu.io/upload_images/127313-6b87ca4b980e26ea.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![离线 tangle](../images/127313-6b87ca4b980e26ea.png)
 
 tangle 能够让用户在离线的情况下，仍然能够继续构建交易，比如在公司内部的局域网，或者在断电的情况下与邻居继续交互。如此，依照协议规定创建交易，并相互连接。
 

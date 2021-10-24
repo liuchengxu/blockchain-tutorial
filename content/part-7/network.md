@@ -47,7 +47,7 @@ Part 7: 网络
 
 区块链网络是一个 P2P（Peer-to-Peer，端到端）的网络，即节点直接连接到其他节点。它的拓扑是扁平的，因为在节点的世界中没有层级之分。下面是它的示意图：
 
-![schematic representation](http://upload-images.jianshu.io/upload_images/127313-3c4174ad7cf6edf3.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![schematic representation](../images/127313-3c4174ad7cf6edf3.png)
 
 [Business vector created by Dooder - Freepik.com](http://www.freepik.com/dooder)
 

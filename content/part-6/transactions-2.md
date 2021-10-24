@@ -318,7 +318,7 @@ Balance of '13UASQpCR8Nr41PojH8Bz4K6cmTCqweskL': 4
 
 来看一下 Merkle 树：
 
-![Merkle tree](http://upload-images.jianshu.io/upload_images/127313-9c708d3c3d6a19c2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Merkle tree](../images/127313-9c708d3c3d6a19c2.png)
 
 每个块都会有一个 Merkle 树，它从叶子节点（树的底部）开始，一个叶子节点就是一个交易哈希（比特币使用双 SHA256 哈希）。叶子节点的数量必须是双数，但是并非每个块都包含了双数的交易。因为，如果一个块里面的交易数为单数，那么就将最后一个叶子节点（也就是 Merkle 树的最后一个交易，不是区块的最后一笔交易）复制一份凑成双数。
 

@@ -24,11 +24,11 @@
 
 首先，让我们来看一下在主链（你可以理解为现在的 Mainnet chain）和分片链（shard chain）上不同层次的对象区别：
 
-![Table 1. Terminology.](http://upload-images.jianshu.io/upload_images/127313-8d156e10bade5a17.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Table 1. Terminology.](../images/127313-8d156e10bade5a17.png)
 
 可以简单地这么认为，交易都会被装入 “collation”。与区块类似，一个 collation 也会指向它在链（指的是分片链）上的 parent collation。 成为一个 “collator”，就意味着你有资格在 POS 分片链上提名一个新的 collation。
 
-![Figure 1. A glimpse of basic collation data structure.](http://upload-images.jianshu.io/upload_images/127313-3a69614f0c028914.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Figure 1. A glimpse of basic collation data structure.](../images/127313-3a69614f0c028914.png)
 
 ## 基本的二次分片
 
@@ -60,11 +60,11 @@
 
 “时期（period）”被定义为一个区块时间的准备窗口（a bounding a window of block times），比如 `PERIOD_LENGTH = 5` 意味着每个周期有 5 个块。这表明在每个周期内，对于每个分片只有不超过 **1** 个有效的 collation。
 
-![Figure 2 (a). Quadratic sharding. The proofs of shard states would be recorded on main chain VMC.](http://upload-images.jianshu.io/upload_images/127313-48dab933ae6ea057.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Figure 2 (a). Quadratic sharding. The proofs of shard states would be recorded on main chain VMC.](../images/127313-48dab933ae6ea057.png)
 
 一旦验证人被采样为合格的 collator 来提案一个新的 collation，collator 必须对最近的 collation 进行验证，并发送一笔交易来调用 `addHeader` 函数。注意，如果 collator **周期 10** 被采样到提交一个新的 collation，这意味着 `addHeader` 交易 **必须被包含在周期 10 里面**，也就是说，交易必须在区块号 `10 * PERIOD_LENGTH` 到区块号 `(10 + 1) * PERIOD_LENGTH - 1` 之间.
 
-![Figure 2 (b). For one shard, only one collation per period; one block can include multiple addHeader transactions of different shards.](http://upload-images.jianshu.io/upload_images/127313-557a7b4ee36264f8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Figure 2 (b). For one shard, only one collation per period; one block can include multiple addHeader transactions of different shards.](../images/127313-557a7b4ee36264f8.png)
 
 
 collation header hash 必须被记录在 VMC 上，以证明它的 header 全局有效。此外，分片的所有其他验证人必须时刻检测 VMC 以获得最新状态，然后验证交易是否也有效。
@@ -75,19 +75,19 @@ collation header hash 必须被记录在 VMC 上，以证明它的 header 全局
 
 Figure 3(a) 中有个例子，主链上有两个分叉，在下图中第二条链是最长有效主链。因为 `block B3` 是 head block，很容易看出 `collation C3` 是 head collation。
 
-![Figure 3 (a).](http://upload-images.jianshu.io/upload_images/127313-2130de02ce98ecbd.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Figure 3 (a).](../images/127313-2130de02ce98ecbd.png)
 
 然后 Figure 3(b) 中 `block B3'` 到了。假设 `block B3` 的得分（score）高于 `block B3'`，那么上面的链仍然是最长主链：
 
-![Figure 2 (b).](http://upload-images.jianshu.io/upload_images/127313-00906f6529d95f84.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Figure 2 (b).](../images/127313-00906f6529d95f84.png)
 
 最后 Figure 3(c) 到了 `block 4`。注意到，对于这个分片，虽然 `collation C3` 的得分比 `collation C2` 更高，但是下方的链是**最长有效主链**，所有现在 `collation C2` 是 head collation：
 
-![Figure 3 (c)](http://upload-images.jianshu.io/upload_images/127313-63cf06f07825bec7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Figure 3 (c)](../images/127313-63cf06f07825bec7.png)
 
 >更多内容：另一个设计 -- Vlad Zamfir 的 [sharded fork choice rule](https://twitter.com/VladZamfir/status/945358660187893761)
 
-![An ingenious design for guaranteeing blocks atomicity before they are finalized.](http://upload-images.jianshu.io/upload_images/127313-6f6c93920b44ffa1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![An ingenious design for guaranteeing blocks atomicity before they are finalized.](../images/127313-6f6c93920b44ffa1.png)
 
 ## 可扩展性与安全性之权衡
 
@@ -105,9 +105,9 @@ Figure 3(a) 中有个例子，主链上有两个分叉，在下图中第二条�
 
 如果采样不能以较高的随机性进行选择，那么攻击者很可能在分片中展开 **1% 攻击**：如果有 100 个分片，攻击者可以专注于攻击某*一个*分片，他们只需要 1% 的hash rate(POW)/deposit(POS) 就可以控制分片[4].
 
-![Figure 4. Traditional majority attack (51 % Attack)](http://upload-images.jianshu.io/upload_images/127313-9138ceb26bc263b1.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Figure 4. Traditional majority attack (51 % Attack)](../images/127313-9138ceb26bc263b1.png)
 
-![Figure 5. Sharding 1% attack](http://upload-images.jianshu.io/upload_images/127313-94c92c07edce0330.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Figure 5. Sharding 1% attack](../images/127313-94c92c07edce0330.png)
 
 ## 分片的区块链显式最终确定性
 
@@ -133,7 +133,7 @@ Figure 3(a) 中有个例子，主链上有两个分叉，在下图中第二条�
 
 一旦完成验证人采样并再混洗（reshuffle），就会立刻触发同步。有了无状态客户端机制，**再混洗**（也就是改变验证者检测的分片，并同步分片链）的成本低至（接近）0，因为它们**只需要验证最新的 collation（也就是有着最高得分的 collation）来同步分片**。
 
-![Figure 6. Stateless client model](http://upload-images.jianshu.io/upload_images/127313-4a458b4eef3b5b6c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![Figure 6. Stateless client model](../images/127313-4a458b4eef3b5b6c.png)
 
 因为同步过程可能非常快，无状态客户端模型就可能在每个 collation 之间再混洗成。这不仅会减轻存储压力和开销，也会使系统更安全，因为频繁采样能够获得适应性攻击的抵抗能力。
 

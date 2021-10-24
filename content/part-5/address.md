@@ -55,7 +55,7 @@
 
 如图，对数据进行签名和对签名进行验证的过程大致如下：
 
-![the process of signing data and verifying signature](http://upload-images.jianshu.io/upload_images/127313-ec45a7fca855f2e0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![the process of signing data and verifying signature](../images/127313-ec45a7fca855f2e0.png)
 
 现在来回顾一个交易完整的生命周期：
 
@@ -92,7 +92,7 @@
 
 下图是从一个公钥获得一个地址的过程：
 
-![get an address from a public key](http://upload-images.jianshu.io/upload_images/127313-6aa6cff5d863d496.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![get an address from a public key](../images/127313-6aa6cff5d863d496.png)
 
 因此，上面提到的公钥解码后包含三个部分：
 
